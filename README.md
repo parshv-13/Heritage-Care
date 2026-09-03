@@ -1,3 +1,4 @@
+**This is a Backup repo for the og with minor corrections**
 # 🌺 Heritage Care — North East India Dementia Care & AI Cognitive Gaming Platform
 
 > **Smart India Hackathon (SIH) MVP Submission**  
@@ -79,5 +80,5 @@ npm run build
 ---
 
 ## 🌐 Live Deployment
-* **GitHub Repository**: [https://github.com/Victorraj020/Cognitive-Gaming5](https://github.com/Victorraj020/Cognitive-Gaming5)
+* **The OG GitHub Repository**: [https://github.com/Victorraj020/Cognitive-Gaming5](https://github.com/Victorraj020/Cognitive-Gaming5)
 * **Netlify Configuration**: Pre-configured with `netlify.toml` for Single Page Application client-side routing.

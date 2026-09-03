@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #F9F7F2;
+  --color-parchment-surface: #FBF9F4;
+  --color-parchment-container: #F0EEE9;
+  --color-parchment-dim: #DBDAD5;
+  --color-parchment-border: #E4E2DD;
+
+  --color-ochre-light: #FFB869;
+  --color-ochre: #BA7517;
+  --color-ochre-dark: #855000;
+  --color-ochre-container: #A76500;
+
+  --color-tea-light: #B5F086;
+  --color-tea: #386A0E;
+  --color-tea-dark: #265100;
+
+  --color-maroon-light: #FFDBD0;
+  --color-maroon: #9C3E1F;
+  --color-maroon-dark: #802A0B;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: #F9F7F2;
+    color: #1B1C19;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #1B1C19;
+  }
+}
+
+/* Accessibility focus indicator minimum 4px bold outline */
+*:focus-visible {
+  outline: 4px solid #386A0E !important;
+  outline-offset: 2px !important;
+}
+
+/* Assamese Gamosa / North-East Textile Pattern Ribbon Accent */
+.gamosa-border-top {
+  border-top: 8px solid #9C3E1F;
+  border-image: repeating-linear-gradient(45deg, #9C3E1F, #9C3E1F 10px, #ffffff 10px, #ffffff 20px) 8;
+}
+
+.gamosa-border-bottom {
+  border-bottom: 8px solid #9C3E1F;
+  border-image: repeating-linear-gradient(45deg, #9C3E1F, #9C3E1F 10px, #ffffff 10px, #ffffff 20px) 8;
+}
+
+.gamosa-pattern-bg {
+  background-color: #ffffff;
+  background-image: radial-gradient(#9C3E1F 0.75px, transparent 0.75px), radial-gradient(#9C3E1F 0.75px, #ffffff 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+/* Touch targets minimum 64px enforce */
+.touch-target {
+  min-height: 64px;
+  min-width: 64px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

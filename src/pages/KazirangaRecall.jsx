@@ -2,38 +2,36 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { recordAndSync, speakText } from '../services/gameStorage';
-import { ArrowLeft, RefreshCw, Volume2, Eye, Sparkles, CheckCircle } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Volume2, Eye } from 'lucide-react';
 
 const KAZIRANGA_ANIMALS = [
-  { id: 'rhino', name: 'One-Horned Rhino', icon: '🦏', details: 'Standing near elephant grass' },
-  { id: 'buffalo', name: 'Wild Water Buffalo', icon: '🐂', details: 'Bathing near water body' },
-  { id: 'deer', name: 'Swamp Deer', icon: '🦌', details: 'Grazing in open meadow' },
-  { id: 'hornbill', name: 'Great Indian Hornbill', icon: '🦅', details: 'Perched on tall tree' },
+  { id: 'rhino', name: 'One-Horned Rhino', details: 'Standing near elephant grass meadow' },
+  { id: 'buffalo', name: 'Wild Water Buffalo', details: 'Resting near water body stream' },
+  { id: 'deer', name: 'Swamp Deer', details: 'Grazing in open forest clearing' },
+  { id: 'hornbill', name: 'Great Indian Hornbill', details: 'Perched on tall holong tree' },
 ];
 
 export function KazirangaRecall() {
   const navigate = useNavigate();
   const { currentUser: user } = useApp();
 
-  const [phase, setPhase] = useState('observe'); // 'observe' | 'spot_change' | 'delayed_recall' | 'completed'
+  const [phase, setPhase] = useState('observe'); // 'observe' | 'spot_change' | 'delayed_recall'
   const [removedAnimal, setRemovedAnimal] = useState(null);
-  const [selectedRecall, setSelectedRecall] = useState(null);
-  const [feedback, setFeedback] = useState('Study the Kaziranga grassland animals carefully!');
+  const [feedback, setFeedback] = useState('Observe all 4 Kaziranga grassland animals carefully.');
 
   const handleStartSpotChange = () => {
-    // Randomly hide one animal
     const randIdx = Math.floor(Math.random() * KAZIRANGA_ANIMALS.length);
     const hidden = KAZIRANGA_ANIMALS[randIdx];
     setRemovedAnimal(hidden);
     setPhase('spot_change');
-    setFeedback('One animal left the grassland! Which animal is missing?');
-    speakText('The scene changed! Tap or tell which animal left the Kaziranga grassland.');
+    setFeedback('One animal departed from the grassland. Identify which animal is missing.');
+    speakText('The scene changed. Identify which animal left the Kaziranga grassland.');
   };
 
   const handleSelectAnimalSpot = (animal) => {
     if (animal.id === removedAnimal.id) {
-      setFeedback(`✨ Correct! The ${removedAnimal.name} was missing!`);
-      speakText(`Correct! The ${removedAnimal.name} left the grassland.`);
+      setFeedback(`Correct: The ${removedAnimal.name} was missing from the habitat.`);
+      speakText(`Correct. The ${removedAnimal.name} left the grassland.`);
       setPhase('delayed_recall');
 
       recordAndSync(user?.uid, 'kaziranga-recall', {
@@ -43,7 +41,7 @@ export function KazirangaRecall() {
         difficulty: 'standard',
       });
     } else {
-      setFeedback('⚠️ Not quite! Look closely at the empty spot on the grass.');
+      setFeedback('That animal is still present. Look closely at which spot is empty.');
       speakText('Look closely at which animal was there before.');
     }
   };
@@ -51,109 +49,109 @@ export function KazirangaRecall() {
   const handleResetScene = () => {
     setPhase('observe');
     setRemovedAnimal(null);
-    setSelectedRecall(null);
-    setFeedback('Study the Kaziranga grassland animals carefully!');
+    setFeedback('Observe all 4 Kaziranga grassland animals carefully.');
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6 pb-32">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+    <div className="bg-[#FFFFFF] pb-32 pt-6 px-4 max-w-4xl mx-auto space-y-6 text-left">
+      {/* Header Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-[#1A1A1A] pb-4">
         <button
           onClick={() => navigate('/home')}
-          className="flex items-center space-x-2 text-[#4A3728] hover:text-amber-800 transition font-medium"
+          className="h-16 px-6 bg-[#FFFFFF] hover:bg-[#F9F9F9] text-[#1A1A1A] font-bold rounded-lg border-2 border-[#1A1A1A] flex items-center gap-3 cursor-pointer self-start"
         >
           <ArrowLeft className="w-6 h-6" />
           <span>Back to Games</span>
         </button>
-        <div className="flex items-center space-x-3">
-          <span className="bg-amber-100 text-amber-900 text-sm px-3 py-1 rounded-full font-semibold border border-amber-300">
-            Assam Kaziranga Park 🦏
+        <div className="flex items-center gap-3">
+          <span className="bg-[#F9F9F9] text-[#1A1A1A] text-sm px-3 py-1 rounded border-2 border-[#1A1A1A] font-bold">
+            Assam Kaziranga Park
           </span>
           <button
             onClick={() => speakText('Kaziranga Grassland Recall. Observe the animals and spot what changed.')}
-            className="p-2 bg-amber-700 text-white rounded-full hover:bg-amber-800 transition"
+            className="h-16 px-6 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold rounded-lg border-2 border-[#0B3C5D] flex items-center gap-2 cursor-pointer"
           >
-            <Volume2 className="w-5 h-5" />
+            <Volume2 className="w-6 h-6" />
+            <span>Read Aloud</span>
           </button>
         </div>
       </div>
 
-      {/* Main Game Container */}
-      <div className="bg-white rounded-2xl p-6 shadow-md border-2 border-amber-900/10">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-[#4A3728] flex items-center justify-center gap-2">
-            🦏 Kaziranga Grassland Recall
+      {/* Main Container */}
+      <div className="bg-[#FFFFFF] border-2 border-[#1A1A1A] rounded-lg p-6 space-y-6">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">
+            Kaziranga Grassland Recall
           </h1>
-          <p className="text-stone-600 text-sm mt-1">{feedback}</p>
+          <p className="text-base font-bold text-[#0B3C5D] mt-1">{feedback}</p>
         </div>
 
-        {/* Grassland Scene Canvas */}
-        <div className="bg-[#2D4A1D] p-8 rounded-2xl border-4 border-amber-900/30 shadow-xl my-6 relative overflow-hidden min-h-[300px] flex flex-col justify-center">
-          {/* Decorative Grass motif */}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-[#1F3614] opacity-80" />
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
-            {KAZIRANGA_ANIMALS.map((animal) => {
-              const isHidden = phase === 'spot_change' && removedAnimal?.id === animal.id;
-              return (
-                <div
-                  key={animal.id}
-                  className={`h-40 rounded-2xl border-2 border-emerald-500/40 p-4 flex flex-col items-center justify-center text-center transition-all ${
-                    isHidden
-                      ? 'bg-emerald-950/60 border-dashed border-amber-400/80 animate-pulse'
-                      : 'bg-emerald-900/80 text-emerald-100 shadow-md'
-                  }`}
-                >
-                  {isHidden ? (
-                    <span className="text-3xl text-amber-300 font-bold">❓</span>
-                  ) : (
-                    <>
-                      <span className="text-5xl mb-2">{animal.icon}</span>
-                      <span className="font-bold text-xs">{animal.name}</span>
-                    </>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+        {/* Animals Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {KAZIRANGA_ANIMALS.map((animal) => {
+            const isHidden = phase === 'spot_change' && removedAnimal?.id === animal.id;
+            return (
+              <div
+                key={animal.id}
+                className={`p-4 rounded-lg border-2 space-y-2 text-left ${
+                  isHidden
+                    ? 'bg-[#F9F9F9] border-dashed border-[#1A1A1A]'
+                    : 'bg-[#FFFFFF] border-[#1A1A1A]'
+                }`}
+              >
+                <span className="text-xs font-bold uppercase text-[#0B3C5D]">Habitat Location</span>
+                {isHidden ? (
+                  <div className="py-6">
+                    <p className="text-lg font-bold text-[#1A1A1A]">[Departed Animal]</p>
+                    <p className="text-xs text-[#777777]">Identify missing wildlife</p>
+                  </div>
+                ) : (
+                  <div>
+                    <h2 className="text-lg font-bold text-[#1A1A1A]">{animal.name}</h2>
+                    <p className="text-xs text-[#333333] mt-1">{animal.details}</p>
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
 
-        {/* Spot-the-Change Selector Options */}
+        {/* Spot The Change Selector */}
         {phase === 'spot_change' && (
-          <div className="bg-amber-50 p-6 rounded-2xl border-2 border-amber-200 mb-6">
-            <p className="text-center text-sm font-bold text-amber-900 mb-4">Which animal is missing from the grassland?</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-[#F9F9F9] border-2 border-[#1A1A1A] p-6 rounded-lg space-y-4">
+            <h2 className="text-lg font-bold text-[#1A1A1A]">Select which animal is missing:</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {KAZIRANGA_ANIMALS.map((animal) => (
                 <button
                   key={animal.id}
                   onClick={() => handleSelectAnimalSpot(animal)}
-                  className="bg-white p-3 rounded-xl border border-amber-300 flex items-center space-x-3 hover:bg-amber-100 transition text-left"
+                  className="h-16 px-6 bg-[#FFFFFF] hover:bg-[#F9F9F9] border-2 border-[#1A1A1A] text-[#1A1A1A] font-bold text-base rounded-lg flex items-center justify-between cursor-pointer"
                 >
-                  <span className="text-2xl">{animal.icon}</span>
-                  <span className="text-xs font-bold text-stone-800">{animal.name}</span>
+                  <span>{animal.name}</span>
+                  <Eye className="w-5 h-5 text-[#0B3C5D]" />
                 </button>
               ))}
             </div>
           </div>
         )}
 
-        {/* Controls */}
-        <div className="flex justify-center space-x-4">
+        {/* Action Button */}
+        <div className="pt-4 border-t-2 border-[#1A1A1A]">
           {phase === 'observe' ? (
             <button
               onClick={handleStartSpotChange}
-              className="bg-emerald-700 text-white font-bold text-lg px-8 py-3.5 rounded-xl hover:bg-emerald-800 shadow-md transition"
+              className="w-full sm:w-auto h-16 px-8 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold text-lg rounded-lg border-2 border-[#0B3C5D] flex items-center justify-center gap-3 cursor-pointer"
             >
-              Start Spot-the-Change Challenge
+              <Eye className="w-6 h-6" />
+              <span>Start Spot-the-Change Challenge</span>
             </button>
           ) : (
             <button
               onClick={handleResetScene}
-              className="bg-amber-700 text-white font-bold text-base px-6 py-3 rounded-xl hover:bg-amber-800 shadow-md transition flex items-center space-x-2"
+              className="w-full sm:w-auto h-16 px-8 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold text-base rounded-lg border-2 border-[#0B3C5D] flex items-center justify-center gap-2 cursor-pointer"
             >
               <RefreshCw className="w-5 h-5" />
-              <span>Observe Landscape Again</span>
+              <span>Observe All Animals Again</span>
             </button>
           )}
         </div>

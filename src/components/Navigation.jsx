@@ -14,42 +14,40 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FBF9F4] border-b-2 border-[#E4E2DD] px-4 py-3 gamosa-border-top shadow-sm">
-      <div className="max-w-md mx-auto flex items-center justify-between gap-2">
-        {/* Brand */}
-        <div className="flex items-center space-x-2 min-w-0">
-          <div className="w-10 h-10 rounded-full bg-[#BA7517] text-white flex items-center justify-center font-bold text-xl shadow shrink-0">
-            🌺
+    <header className="sticky top-0 z-50 bg-[#FFFFFF] border-b-2 border-[#1A1A1A] px-4 py-3">
+      <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
+        {/* Brand Left-aligned */}
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-lg bg-[#0B3C5D] text-white flex items-center justify-center font-bold text-xl shrink-0 border-2 border-[#0B3C5D]">
+            HC
           </div>
-          <div className="min-w-0">
-            <h1 className="text-lg font-bold text-[#1B1C19] leading-tight truncate">Heritage Care</h1>
-            {currentUser && (
-              <p className="text-xs text-[#855000] font-semibold truncate">
-                {patientName || currentUser.displayName || currentUser.phoneNumber || 'User'}
-              </p>
-            )}
+          <div>
+            <h1 className="text-xl font-bold text-[#1A1A1A] leading-tight">Heritage Care</h1>
+            <p className="text-sm text-[#333333] font-semibold">
+              {patientName || (currentUser && (currentUser.displayName || currentUser.phoneNumber)) || 'Senior Care'}
+            </p>
           </div>
         </div>
 
         {/* Right actions */}
         <div className="flex items-center gap-2 shrink-0">
-          {/* Voice Assistant */}
           <button
             onClick={() => handleVoiceCommand()}
             aria-label="Activate Voice Assistant"
-            className="touch-target bg-[#BA7517] hover:bg-[#855000] active:scale-95 text-white font-bold px-3 py-2 rounded-2xl flex items-center space-x-1 border-2 border-[#673D00] shadow-md transition"
+            className="h-16 px-4 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold rounded-lg flex items-center gap-2 border-2 border-[#0B3C5D] cursor-pointer"
           >
-            <Mic className="w-5 h-5 animate-pulse" />
+            <Mic className="w-6 h-6" />
+            <span className="hidden sm:inline text-base">Voice Help</span>
           </button>
 
-          {/* Logout */}
           {currentUser && (
             <button
               onClick={handleLogout}
               aria-label="Sign Out"
-              className="touch-target bg-[#FFDBD0] hover:bg-[#9C3E1F] hover:text-white text-[#9C3E1F] font-bold px-3 py-2 rounded-2xl flex items-center space-x-1 border-2 border-[#9C3E1F] shadow-md transition"
+              className="h-16 px-4 bg-[#FFFFFF] hover:bg-[#F9F9F9] text-[#1A1A1A] font-bold rounded-lg flex items-center gap-2 border-2 border-[#1A1A1A] cursor-pointer"
             >
-              <LogOut className="w-5 h-5" />
+              <LogOut className="w-6 h-6 text-[#A31E1E]" />
+              <span className="hidden sm:inline text-base">Sign Out</span>
             </button>
           )}
         </div>
@@ -67,8 +65,8 @@ export const BottomNav = () => {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#FBF9F4] border-t-2 border-[#857464] py-2 px-4 shadow-lg">
-      <div className="max-w-md mx-auto flex justify-around items-center">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#FFFFFF] border-t-2 border-[#1A1A1A] py-2 px-4">
+      <div className="max-w-4xl mx-auto flex justify-between items-center gap-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -76,15 +74,15 @@ export const BottomNav = () => {
               key={item.to}
               to={item.to}
               className={({ isActive }) =>
-                `flex flex-col items-center justify-center touch-target w-24 py-2 rounded-2xl transition-all ${
+                `flex-1 h-16 flex flex-col items-center justify-center rounded-lg border-2 text-base font-bold ${
                   isActive
-                    ? 'bg-[#BA7517] text-white font-bold border-2 border-[#673D00] shadow-md'
-                    : 'text-[#524436] hover:bg-[#F0EEE9] font-medium'
+                    ? 'bg-[#0B3C5D] text-white border-[#0B3C5D]'
+                    : 'bg-[#FFFFFF] text-[#1A1A1A] border-[#CCCCCC] hover:bg-[#F9F9F9]'
                 }`
               }
             >
-              <Icon className="w-7 h-7 mb-1" />
-              <span className="text-sm tracking-wide">{item.label}</span>
+              <Icon className="w-6 h-6 mb-0.5" />
+              <span className="text-xs">{item.label}</span>
             </NavLink>
           );
         })}

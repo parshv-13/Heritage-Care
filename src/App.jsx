@@ -17,7 +17,7 @@ import { Reminders } from './pages/Reminders';
 import { Family } from './pages/Family';
 import { Progress } from './pages/Progress';
 
-// New Culturally Unified Games
+// Culturally Unified Games
 import { KhasiLoom } from './pages/KhasiLoom';
 import { CherawRhythm } from './pages/CherawRhythm';
 import { MorungStory } from './pages/MorungStory';
@@ -40,9 +40,9 @@ const registerSW = () => {
 
 /** Layout wrapper shown for authenticated pages */
 const AppLayout = ({ children }) => (
-  <div className="min-h-screen bg-[#F9F7F2] text-[#1B1C19] flex flex-col font-sans">
+  <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] flex flex-col font-sans">
     <Navbar />
-    <main className="flex-1 pb-28 md:pb-32 overflow-y-auto">{children}</main>
+    <main className="flex-1 pb-32 overflow-y-auto">{children}</main>
     <PWAInstallPrompt />
     <BottomNav />
   </div>
@@ -57,10 +57,10 @@ export function App() {
     <AppProvider>
       <Router>
         <Routes>
-          {/* ── Public route ── */}
+          {/* Public route */}
           <Route path="/login" element={<Login />} />
 
-          {/* ── Protected routes ── */}
+          {/* Protected routes */}
           <Route
             path="/onboarding"
             element={
@@ -220,7 +220,7 @@ export function App() {
             }
           />
 
-          {/* ── Default catch-all ── */}
+          {/* Catch-all */}
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Router>

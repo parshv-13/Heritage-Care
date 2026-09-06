@@ -1,79 +1,65 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { Brain, Sparkles, Volume2, ArrowRight, HeartHandshake, MapPin, Play } from 'lucide-react';
+import { Volume2, ArrowRight, Play, MapPin, CheckCircle2, Clock } from 'lucide-react';
 import { speakText } from '../services/gameStorage';
 
 const GAMES_LIST = [
   {
     id: 'khasi-loom',
     title: 'Khasi Jainsem Loom Weave',
-    state: 'Meghalaya 🧵',
+    state: 'Meghalaya',
     domain: 'Visual Pattern Memory',
     path: '/game/khasi-loom',
-    icon: '🧵',
-    color: 'bg-amber-50 border-amber-300 text-amber-950',
-    btnBg: 'bg-amber-700 hover:bg-amber-800 text-white',
+    description: 'Memorize the geometric fabric weave pattern and recreate it accurately on the loom.',
   },
   {
     id: 'cheraw-rhythm',
     title: 'Cheraw Bamboo Rhythm Tap',
-    state: 'Mizoram 🎋',
-    domain: 'Divided Attention & Rhythm',
+    state: 'Mizoram',
+    domain: 'Divided Attention & Motor Timing',
     path: '/game/cheraw-rhythm',
-    icon: '🎋',
-    color: 'bg-emerald-50 border-emerald-300 text-emerald-950',
-    btnBg: 'bg-emerald-700 hover:bg-emerald-800 text-white',
+    description: 'Step into the open bamboo grid in harmony with the traditional tempo.',
   },
   {
     id: 'morung-story',
     title: 'Village Elder Morung Storytelling',
-    state: 'Nagaland 🦅',
-    domain: 'Voice Reminiscence & Semantic',
+    state: 'Nagaland',
+    domain: 'Voice Reminiscence & Semantic Recall',
     path: '/game/morung-story',
-    icon: '🦅',
-    color: 'bg-red-50 border-red-300 text-red-950',
-    btnBg: 'bg-red-800 hover:bg-red-900 text-white',
+    description: 'Listen to folklore narrations and complete traditional stories using your voice.',
   },
   {
     id: 'wangala-drums',
     title: 'Wangala 100-Drums Echo',
-    state: 'Meghalaya Garo 🥁',
-    domain: 'Auditory Sequential Pattern',
+    state: 'Meghalaya Garo',
+    domain: 'Auditory Sequential Memory',
     path: '/game/wangala-drums',
-    icon: '🥁',
-    color: 'bg-amber-50 border-amber-400 text-amber-950',
-    btnBg: 'bg-amber-800 hover:bg-amber-900 text-white',
+    description: 'Listen to the drumbeat sequence and tap back each rhythm in exact order.',
   },
   {
     id: 'kitchen-master',
     title: 'Traditional Kitchen Master',
-    state: 'Assam & NE 🍲',
+    state: 'Assam & North East',
     domain: 'Procedural Cooking Recall',
     path: '/game/kitchen-master',
-    icon: '🍲',
-    color: 'bg-orange-50 border-orange-300 text-orange-950',
-    btnBg: 'bg-orange-700 hover:bg-orange-800 text-white',
+    description: 'Arrange traditional culinary steps in proper order from preparation to serving.',
   },
   {
     id: 'monastery-walk',
     title: 'Monastery Prayer Wheel Walk',
-    state: 'Arunachal & Sikkim ☸️',
+    state: 'Arunachal & Sikkim',
     domain: 'Calming Low-Stimulation',
     path: '/game/monastery-walk',
-    icon: '☸️',
-    color: 'bg-indigo-50 border-indigo-300 text-indigo-950',
-    btnBg: 'bg-indigo-700 hover:bg-indigo-800 text-white',
+    description: 'Tranquil mountain walking simulation with prayer wheel resonance for relaxation.',
   },
   {
     id: 'kaziranga-recall',
     title: 'Kaziranga Grassland Recall',
-    state: 'Assam Kaziranga 🦏',
+    state: 'Assam Kaziranga',
     domain: 'Visual Detail & Spot-the-Change',
     path: '/game/kaziranga-recall',
-    icon: '🦏',
-    color: 'bg-emerald-50 border-emerald-300 text-emerald-950',
-    btnBg: 'bg-emerald-800 hover:bg-emerald-900 text-white',
+    description: 'Observe native wildlife in grassland habitat and identify which animal departed.',
   },
 ];
 
@@ -82,116 +68,134 @@ export const Home = () => {
   const { currentTheme, t, patientName, reminders, toggleReminder, userState, userLanguage } = useApp();
 
   const handleVoiceHelp = () => {
-    speakText(`Hello ${patientName}! Welcome to your ${currentTheme.name} heritage memory app. ${currentTheme.greeting}`);
+    speakText(`Hello ${patientName}. Welcome to your memory care platform. ${currentTheme.greeting}`);
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F7F2] pb-24 pt-4 px-4 max-w-4xl mx-auto space-y-6">
-      {/* 1. Regional Cultural Greeting Header */}
-      <div
-        className="w-full rounded-3xl p-6 shadow-lg border-3 text-white space-y-3 relative overflow-hidden transition-all duration-300"
-        style={{
-          backgroundColor: currentTheme.primary,
-          borderColor: currentTheme.secondary || '#673D00',
-        }}
-      >
-        <div className="flex items-center justify-between">
+    <div className="bg-[#FFFFFF] pb-32 pt-8 px-4 max-w-4xl mx-auto space-y-8 text-left">
+      {/* 1. Header Profile Banner */}
+      <section className="bg-[#F9F9F9] border-2 border-[#1A1A1A] rounded-lg p-6 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">
-              📍 {userState} • {userLanguage}
+            <span className="inline-block text-xs font-bold uppercase tracking-wider bg-[#FFFFFF] border-2 border-[#1A1A1A] px-3 py-1 rounded-md text-[#1A1A1A]">
+              Region: {userState} • Language: {userLanguage}
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold">{currentTheme.greeting}</h2>
-            <p className="text-lg opacity-90">{patientName}</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">
+              {currentTheme.greeting}
+            </h1>
+            <p className="text-lg text-[#333333] font-semibold">
+              Patient: {patientName}
+            </p>
           </div>
-          <button
-            onClick={handleVoiceHelp}
-            aria-label="Read Greeting"
-            className="p-3 bg-white/20 hover:bg-white/30 rounded-2xl touch-target text-white"
-          >
-            <Volume2 className="w-8 h-8" />
-          </button>
-        </div>
 
-        {/* State Cultural Motif Ribbon */}
-        <div className="pt-2 border-t border-white/20 text-xs font-semibold flex items-center justify-between text-white/90">
-          <span>{currentTheme.motifs.slice(0, 3).join(' ')}</span>
-          <button
-            onClick={() => navigate('/onboarding')}
-            className="text-xs underline hover:text-white flex items-center gap-1 font-bold"
-          >
-            <MapPin className="w-3.5 h-3.5" /> Change Region
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              onClick={handleVoiceHelp}
+              aria-label="Read Greeting Aloud"
+              className="h-16 px-6 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold rounded-lg flex items-center gap-2 border-2 border-[#0B3C5D] cursor-pointer"
+            >
+              <Volume2 className="w-6 h-6" />
+              <span className="text-base">Read Aloud</span>
+            </button>
+            <button
+              onClick={() => navigate('/onboarding')}
+              className="h-16 px-4 bg-[#FFFFFF] hover:bg-[#F9F9F9] text-[#1A1A1A] font-bold rounded-lg flex items-center gap-2 border-2 border-[#1A1A1A] cursor-pointer"
+            >
+              <MapPin className="w-5 h-5 text-[#0B3C5D]" />
+              <span className="text-sm">Change Region</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* 2. Today's Reminders Preview */}
-      <section className="bg-white border-2 rounded-3xl p-5 shadow-md space-y-3" style={{ borderColor: currentTheme.primary }}>
+      {/* 2. Today's Reminders Banner */}
+      <section className="bg-[#FFFFFF] border-2 border-[#1A1A1A] rounded-lg p-6 space-y-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold text-[#1B1C19] flex items-center gap-2">
-            🔔 {t.reminders}
-          </h3>
+          <h2 className="text-2xl font-bold text-[#1A1A1A] flex items-center gap-2">
+            <Clock className="w-6 h-6 text-[#0B3C5D]" />
+            <span>Today's Priority Reminders</span>
+          </h2>
           <button
             onClick={() => navigate('/reminders')}
-            className="text-sm font-bold flex items-center gap-1 hover:underline"
-            style={{ color: currentTheme.primary }}
+            className="text-base font-bold text-[#0B3C5D] underline flex items-center gap-1 hover:text-[#08283E] cursor-pointer"
           >
-            {t.viewAll} <ArrowRight className="w-4 h-4" />
+            <span>View All Reminders</span>
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
         {reminders.length > 0 ? (
-          <div className="bg-[#FAF8F5] border border-[#E4E2DD] p-4 rounded-2xl flex items-center justify-between">
+          <div className="bg-[#F9F9F9] border-2 border-[#CCCCCC] p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <span className="text-xs font-bold text-[#855000]">{reminders[0].time}</span>
-              <p className="text-base font-bold text-[#1B1C19]">{reminders[0].title}</p>
+              <span className="text-sm font-bold text-[#0B3C5D]">{reminders[0].time}</span>
+              <p className="text-lg font-bold text-[#1A1A1A]">{reminders[0].title}</p>
+              <span className="inline-block text-xs font-semibold px-2 py-0.5 rounded border border-[#CCCCCC] bg-[#FFFFFF] text-[#333333]">
+                Category: {reminders[0].category}
+              </span>
             </div>
             <button
               onClick={() => toggleReminder(reminders[0].id)}
-              className={`touch-target px-4 py-2 rounded-xl font-bold text-sm border-2 transition ${
+              className={`h-16 px-6 rounded-lg font-bold text-base border-2 cursor-pointer flex items-center justify-center gap-2 ${
                 reminders[0].taken
-                  ? 'bg-[#386A0E] text-white border-[#0C2000]'
-                  : 'bg-white text-[#1B1C19] border-[#BA7517]'
+                  ? 'bg-[#1D6F42] text-white border-[#1D6F42]'
+                  : 'bg-[#0B3C5D] text-white border-[#0B3C5D] hover:bg-[#08283E]'
               }`}
             >
-              {reminders[0].taken ? 'Done ✓' : t.check}
+              {reminders[0].taken ? (
+                <>
+                  <CheckCircle2 className="w-6 h-6" />
+                  <span>Completed</span>
+                </>
+              ) : (
+                <span>Mark as Done</span>
+              )}
             </button>
           </div>
         ) : (
-          <p className="text-sm text-gray-500">No pending reminders.</p>
+          <p className="text-base text-[#333333]">No pending reminders scheduled for today.</p>
         )}
       </section>
 
       {/* 3. All 7 Cognitive Memory Games */}
-      <section className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-extrabold text-[#1B1C19] flex items-center gap-2">
-            🧠 Culturally Unified Cognitive Games (7 Titles)
-          </h3>
+      <section className="space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold text-[#1A1A1A]">
+            Cognitive Memory & Activity Games
+          </h2>
+          <p className="text-base text-[#333333] mt-1">
+            Clinical activities adapted with North East cultural anchors. Zero failure pressure.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {GAMES_LIST.map((game) => (
             <div
               key={game.id}
-              className={`p-5 rounded-2xl border-2 shadow-sm flex flex-col justify-between ${game.color}`}
+              className="bg-[#FFFFFF] border-2 border-[#1A1A1A] rounded-lg p-6 flex flex-col justify-between space-y-4"
             >
-              <div>
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-4xl">{game.icon}</span>
-                  <span className="text-xs font-bold bg-white/80 px-2.5 py-1 rounded-full border border-stone-200">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold uppercase tracking-wider bg-[#F9F9F9] border border-[#CCCCCC] px-3 py-1 rounded text-[#1A1A1A]">
                     {game.state}
                   </span>
+                  <span className="text-xs font-bold text-[#0B3C5D]">
+                    {game.domain}
+                  </span>
                 </div>
-                <h4 className="text-lg font-extrabold text-stone-900">{game.title}</h4>
-                <p className="text-xs font-semibold text-stone-600 mt-1">Domain: {game.domain}</p>
+                <h3 className="text-xl font-bold text-[#1A1A1A]">
+                  {game.title}
+                </h3>
+                <p className="text-base text-[#333333] leading-normal">
+                  {game.description}
+                </p>
               </div>
 
               <button
                 onClick={() => navigate(game.path)}
-                className={`mt-4 w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center space-x-2 shadow-sm transition ${game.btnBg}`}
+                className="w-full h-16 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold text-lg rounded-lg border-2 border-[#0B3C5D] flex items-center justify-center gap-3 cursor-pointer"
               >
-                <Play className="w-4 h-4 fill-current" />
-                <span>Play Game</span>
+                <Play className="w-5 h-5 fill-current" />
+                <span>Launch {game.title}</span>
               </button>
             </div>
           ))}

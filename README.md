@@ -1,4 +1,4 @@
-# 🌺 Heritage Care — North East India Dementia Care & AI Cognitive Gaming Platform
+# 🌺 Qurevia — North East India Dementia Care & AI Cognitive Gaming Platform
 
 > **Smart India Hackathon (SIH) MVP Submission**  
 > **Target Audience:** Elderly dementia patients & caregivers across 7 North-Eastern Indian States (*Assam, Manipur, Meghalaya, Nagaland, Tripura, Mizoram, Arunachal Pradesh*).
@@ -9,7 +9,7 @@
 
 | Problem Statement Requirement | MVP Feature Implemented | Technical Details |
 |---|---|---|
-| **a. Interactive Cognitive Games** | 4 Tactile & Dementia-Friendly Games: Memory Match, Daily Routine, Photo Recall, Jigsaw | Large touch targets, high contrast, non-judgmental feedback, no timers or pressure |
+| **a. Interactive Cognitive Games** | 7 Tactile & Dementia-Friendly Games | Large touch targets, high contrast, non-judgmental feedback, no timers or pressure |
 | **b. AI/ML Adaptive Difficulty** | Adaptive Performance Engine (`gameStorage.js`) | Dynamically adjusts grid sizes (2x2 → 3x3) and hints based on historical score & reaction metrics |
 | **c. Multilingual & Voice Assistant** | Web Speech Synthesis + 3 Language Modes (English, Hindi, Native Script) | High-contrast TTS audio button on every screen; state-specific native scripts (*Assamese, Manipuri, Khasi, Nagamese, Kokborok, Mizo, Nyishi*) |
 | **d. Culturally Familiar Themes** | 7 Regional State Design Systems (`regionalThemes.js`) | Dynamic color themes, woven border motifs (*Gamosa, Innaphi, Puanchei*), and state symbols (*Kaziranga Rhino, Shirui Lily, Root Bridge, Hornbill*) |

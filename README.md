@@ -79,5 +79,6 @@ npm run build
 ---
 
 ## 🌐 Live Deployment
-* **GitHub Repository**: [https://github.com/Victorraj020/Cognitive-Gaming5](https://github.com/Victorraj020/Cognitive-Gaming5)
-* **Netlify Configuration**: Pre-configured with `netlify.toml` for Single Page Application client-side routing.
+* **The OG GitHub Repository**: [https://github.com/Victorraj020/Cognitive-Gaming5](https://github.com/Victorraj020/Cognitive-Gaming5)
+* **Netlify Configuration**: Pre-configured with `netlify.toml`.
+* **Vercel Configuration**: Pre-configured with `vercel.json`.

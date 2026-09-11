@@ -72,18 +72,18 @@ export const Home = () => {
   };
 
   return (
-    <div className="bg-[#FFFFFF] pb-32 pt-8 px-4 max-w-4xl mx-auto space-y-8 text-left">
+    <div className="bg-[#FFFFFF] dark:bg-[#121214] pb-32 pt-8 px-4 max-w-4xl mx-auto space-y-8 text-left transition-colors">
       {/* 1. Header Profile Banner */}
-      <section className="bg-[#F9F9F9] border-2 border-[#1A1A1A] rounded-lg p-6 space-y-4">
+      <section className="bg-[#F9F9F9] dark:bg-[#1E1E22] border-2 border-[#1A1A1A] dark:border-[#3F3F46] rounded-lg p-6 space-y-4 transition-colors">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="space-y-1">
-            <span className="inline-block text-xs font-bold uppercase tracking-wider bg-[#FFFFFF] border-2 border-[#1A1A1A] px-3 py-1 rounded-md text-[#1A1A1A]">
+            <span className="inline-block text-xs font-bold uppercase tracking-wider bg-[#FFFFFF] dark:bg-[#27272A] border-2 border-[#1A1A1A] dark:border-[#52525B] px-3 py-1 rounded-md text-[#1A1A1A] dark:text-[#E4E4E7]">
               Region: {userState} • Language: {userLanguage}
             </span>
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A]">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#1A1A1A] dark:text-[#F4F4F5]">
               {currentTheme.greeting}
             </h1>
-            <p className="text-lg text-[#333333] font-semibold">
+            <p className="text-lg text-[#333333] dark:text-[#A1A1AA] font-semibold">
               Patient: {patientName}
             </p>
           </div>
@@ -92,16 +92,16 @@ export const Home = () => {
             <button
               onClick={handleVoiceHelp}
               aria-label="Read Greeting Aloud"
-              className="h-16 px-6 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold rounded-lg flex items-center gap-2 border-2 border-[#0B3C5D] cursor-pointer"
+              className="h-16 px-6 bg-[#0B3C5D] dark:bg-[#0284C7] hover:bg-[#08283E] dark:hover:bg-[#0369A1] text-white font-bold rounded-lg flex items-center gap-2 border-2 border-[#0B3C5D] dark:border-[#0284C7] cursor-pointer"
             >
               <Volume2 className="w-6 h-6" />
               <span className="text-base">Read Aloud</span>
             </button>
             <button
               onClick={() => navigate('/onboarding')}
-              className="h-16 px-4 bg-[#FFFFFF] hover:bg-[#F9F9F9] text-[#1A1A1A] font-bold rounded-lg flex items-center gap-2 border-2 border-[#1A1A1A] cursor-pointer"
+              className="h-16 px-4 bg-[#FFFFFF] dark:bg-[#27272A] hover:bg-[#F9F9F9] dark:hover:bg-[#3F3F46] text-[#1A1A1A] dark:text-[#F4F4F5] font-bold rounded-lg flex items-center gap-2 border-2 border-[#1A1A1A] dark:border-[#52525B] cursor-pointer"
             >
-              <MapPin className="w-5 h-5 text-[#0B3C5D]" />
+              <MapPin className="w-5 h-5 text-[#0B3C5D] dark:text-[#38BDF8]" />
               <span className="text-sm">Change Region</span>
             </button>
           </div>
@@ -109,15 +109,15 @@ export const Home = () => {
       </section>
 
       {/* 2. Today's Reminders Banner */}
-      <section className="bg-[#FFFFFF] border-2 border-[#1A1A1A] rounded-lg p-6 space-y-4">
+      <section className="bg-[#FFFFFF] dark:bg-[#18181B] border-2 border-[#1A1A1A] dark:border-[#3F3F46] rounded-lg p-6 space-y-4 transition-colors">
         <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold text-[#1A1A1A] flex items-center gap-2">
-            <Clock className="w-6 h-6 text-[#0B3C5D]" />
+          <h2 className="text-2xl font-bold text-[#1A1A1A] dark:text-[#F4F4F5] flex items-center gap-2">
+            <Clock className="w-6 h-6 text-[#0B3C5D] dark:text-[#38BDF8]" />
             <span>Today's Priority Reminders</span>
           </h2>
           <button
             onClick={() => navigate('/reminders')}
-            className="text-base font-bold text-[#0B3C5D] underline flex items-center gap-1 hover:text-[#08283E] cursor-pointer"
+            className="text-base font-bold text-[#0B3C5D] dark:text-[#38BDF8] underline flex items-center gap-1 hover:text-[#08283E] dark:hover:text-[#7DD3FC] cursor-pointer"
           >
             <span>View All Reminders</span>
             <ArrowRight className="w-4 h-4" />
@@ -125,11 +125,11 @@ export const Home = () => {
         </div>
 
         {reminders.length > 0 ? (
-          <div className="bg-[#F9F9F9] border-2 border-[#CCCCCC] p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="bg-[#F9F9F9] dark:bg-[#27272A] border-2 border-[#CCCCCC] dark:border-[#52525B] p-4 rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <span className="text-sm font-bold text-[#0B3C5D]">{reminders[0].time}</span>
-              <p className="text-lg font-bold text-[#1A1A1A]">{reminders[0].title}</p>
-              <span className="inline-block text-xs font-semibold px-2 py-0.5 rounded border border-[#CCCCCC] bg-[#FFFFFF] text-[#333333]">
+              <span className="text-sm font-bold text-[#0B3C5D] dark:text-[#38BDF8]">{reminders[0].time}</span>
+              <p className="text-lg font-bold text-[#1A1A1A] dark:text-[#F4F4F5]">{reminders[0].title}</p>
+              <span className="inline-block text-xs font-semibold px-2 py-0.5 rounded border border-[#CCCCCC] dark:border-[#52525B] bg-[#FFFFFF] dark:bg-[#1E1E22] text-[#333333] dark:text-[#A1A1AA]">
                 Category: {reminders[0].category}
               </span>
             </div>
@@ -137,8 +137,8 @@ export const Home = () => {
               onClick={() => toggleReminder(reminders[0].id)}
               className={`h-16 px-6 rounded-lg font-bold text-base border-2 cursor-pointer flex items-center justify-center gap-2 ${
                 reminders[0].taken
-                  ? 'bg-[#1D6F42] text-white border-[#1D6F42]'
-                  : 'bg-[#0B3C5D] text-white border-[#0B3C5D] hover:bg-[#08283E]'
+                  ? 'bg-[#1D6F42] dark:bg-[#15803D] text-white border-[#1D6F42] dark:border-[#15803D]'
+                  : 'bg-[#0B3C5D] dark:bg-[#0284C7] text-white border-[#0B3C5D] dark:border-[#0284C7] hover:bg-[#08283E] dark:hover:bg-[#0369A1]'
               }`}
             >
               {reminders[0].taken ? (
@@ -152,17 +152,17 @@ export const Home = () => {
             </button>
           </div>
         ) : (
-          <p className="text-base text-[#333333]">No pending reminders scheduled for today.</p>
+          <p className="text-base text-[#333333] dark:text-[#A1A1AA]">No pending reminders scheduled for today.</p>
         )}
       </section>
 
       {/* 3. All 7 Cognitive Memory Games */}
       <section className="space-y-6">
         <div>
-          <h2 className="text-2xl font-bold text-[#1A1A1A]">
+          <h2 className="text-2xl font-bold text-[#1A1A1A] dark:text-[#F4F4F5]">
             Cognitive Memory & Activity Games
           </h2>
-          <p className="text-base text-[#333333] mt-1">
+          <p className="text-base text-[#333333] dark:text-[#A1A1AA] mt-1">
             Clinical activities adapted with North East cultural anchors. Zero failure pressure.
           </p>
         </div>
@@ -171,28 +171,28 @@ export const Home = () => {
           {GAMES_LIST.map((game) => (
             <div
               key={game.id}
-              className="bg-[#FFFFFF] border-2 border-[#1A1A1A] rounded-lg p-6 flex flex-col justify-between space-y-4"
+              className="bg-[#FFFFFF] dark:bg-[#18181B] border-2 border-[#1A1A1A] dark:border-[#3F3F46] rounded-lg p-6 flex flex-col justify-between space-y-4 transition-colors"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-xs font-bold uppercase tracking-wider bg-[#F9F9F9] border border-[#CCCCCC] px-3 py-1 rounded text-[#1A1A1A]">
+                  <span className="text-xs font-bold uppercase tracking-wider bg-[#F9F9F9] dark:bg-[#27272A] border border-[#CCCCCC] dark:border-[#52525B] px-3 py-1 rounded text-[#1A1A1A] dark:text-[#E4E4E7]">
                     {game.state}
                   </span>
-                  <span className="text-xs font-bold text-[#0B3C5D]">
+                  <span className="text-xs font-bold text-[#0B3C5D] dark:text-[#38BDF8]">
                     {game.domain}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold text-[#1A1A1A]">
+                <h3 className="text-xl font-bold text-[#1A1A1A] dark:text-[#F4F4F5]">
                   {game.title}
                 </h3>
-                <p className="text-base text-[#333333] leading-normal">
+                <p className="text-base text-[#333333] dark:text-[#A1A1AA] leading-normal">
                   {game.description}
                 </p>
               </div>
 
               <button
                 onClick={() => navigate(game.path)}
-                className="w-full h-16 bg-[#0B3C5D] hover:bg-[#08283E] text-white font-bold text-lg rounded-lg border-2 border-[#0B3C5D] flex items-center justify-center gap-3 cursor-pointer"
+                className="w-full h-16 bg-[#0B3C5D] dark:bg-[#0284C7] hover:bg-[#08283E] dark:hover:bg-[#0369A1] text-white font-bold text-lg rounded-lg border-2 border-[#0B3C5D] dark:border-[#0284C7] flex items-center justify-center gap-3 cursor-pointer"
               >
                 <Play className="w-5 h-5 fill-current" />
                 <span>Launch {game.title}</span>

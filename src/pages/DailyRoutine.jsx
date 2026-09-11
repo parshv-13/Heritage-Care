@@ -21,11 +21,6 @@ export const DailyRoutine = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [startTime, setStartTime] = useState(null);
 
-  useEffect(() => {
-    startNewGame();
-    speakText("Welcome to Sequence It. Arrange your morning daily routine steps in the correct order.");
-  }, []);
-
   const startNewGame = () => {
     // Adapt drink step to region
     const regionalDrink = userState === 'Assam' ? 'Sip Warm Assam Tea ☕' :
@@ -46,6 +41,11 @@ export const DailyRoutine = () => {
     setIsCompleted(false);
     setStartTime(Date.now());
   };
+
+  useEffect(() => {
+    startNewGame();
+    speakText("Welcome to Sequence It. Arrange your morning daily routine steps in the correct order.");
+  }, []);
 
   const moveCard = (index, direction) => {
     const newCards = [...cards];

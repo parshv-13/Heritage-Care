@@ -30,7 +30,7 @@ export const PWAInstallPrompt = () => {
   }, []);
 
   const handleInstallClick = async () => {
-    speakText("Installing Heritage Care app to your home screen");
+    speakText("Installing Qurevia app to your home screen");
 
     if (deferredPrompt) {
       deferredPrompt.prompt();
@@ -105,7 +105,7 @@ export const PWAInstallPrompt = () => {
             className="flex-1 touch-target text-white font-bold text-lg py-3 rounded-2xl shadow-md flex items-center justify-center gap-2 transition border-2"
             style={{ backgroundColor: currentTheme.primary, borderColor: currentTheme.accent || currentTheme.primary }}
           >
-            <Download className="w-6 h-6" /> Install Heritage Care
+            <Download className="w-6 h-6" /> Install Qurevia
           </button>
           <button
             onClick={handleDismiss}

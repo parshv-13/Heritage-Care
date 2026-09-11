@@ -41,7 +41,7 @@ export const Onboarding = () => {
     <div className="min-h-screen bg-[#FFFFFF] py-8 px-4 flex flex-col justify-center items-center max-w-xl mx-auto space-y-6 text-left">
       {/* Top Banner */}
       <div className="w-full space-y-2 border-b-2 border-[#1A1A1A] pb-4">
-        <h1 className="text-3xl font-bold text-[#1A1A1A]">Welcome to Heritage Care</h1>
+        <h1 className="text-3xl font-bold text-[#1A1A1A]">Welcome to Qurevia</h1>
         <p className="text-base font-semibold text-[#333333]">
           Customize regional anchors and language for your home state
         </p>

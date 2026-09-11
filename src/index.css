@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-brand-primary: #0B3C5D;
@@ -31,6 +32,18 @@
     text-align: left;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  /* Dark mode: class added to <html> element by AppContext */
+  html.dark body {
+    background-color: #121214 !important;
+    color: #E4E4E7 !important;
+  }
+
+  html.dark {
+    background-color: #121214;
+    color-scheme: dark;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -40,15 +53,15 @@
     margin: 0;
   }
 
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: #F4F4F5;
+  }
+
   p, span, label, div {
     text-align: left;
   }
 
-  /* Zero passive animations or slow background pulses */
-  *, *::before, *::after {
-    animation: none !important;
-  }
-
+  /* Allow intentional game animations, block only passive decorative ones */
   /* Explicit active click feedback only, max 150ms */
   button:active, a:active, input:active, select:active {
     transition: transform 150ms ease, background-color 150ms ease !important;
@@ -60,6 +73,10 @@
 *:focus-visible {
   outline: 4px solid #0B3C5D !important;
   outline-offset: 2px !important;
+}
+
+.dark *:focus-visible {
+  outline: 4px solid #38BDF8 !important;
 }
 
 /* Strict Senior-Friendly Button Utility */
@@ -82,9 +99,20 @@
   box-shadow: none !important;
 }
 
+.dark .btn-primary {
+  background-color: #0284C7;
+  border-color: #0284C7;
+  color: #FFFFFF;
+}
+
 .btn-primary:hover {
   background-color: #08283E;
   border-color: #08283E;
+}
+
+.dark .btn-primary:hover {
+  background-color: #0369A1;
+  border-color: #0369A1;
 }
 
 .btn-primary:active {
@@ -110,8 +138,18 @@
   box-shadow: none !important;
 }
 
+.dark .btn-secondary {
+  background-color: #27272A;
+  color: #F4F4F5;
+  border-color: #52525B;
+}
+
 .btn-secondary:hover {
   background-color: #F9F9F9;
+}
+
+.dark .btn-secondary:hover {
+  background-color: #3F3F46;
 }
 
 .btn-success {
@@ -133,6 +171,11 @@
   box-shadow: none !important;
 }
 
+.dark .btn-success {
+  background-color: #15803D;
+  border-color: #15803D;
+}
+
 .btn-danger {
   min-height: 64px;
   min-width: 64px;
@@ -152,6 +195,11 @@
   box-shadow: none !important;
 }
 
+.dark .btn-danger {
+  background-color: #B91C1C;
+  border-color: #B91C1C;
+}
+
 /* Flat Card Utility with Explicit 2px Dark Solid Border */
 .card-flat {
   background-color: #FFFFFF;
@@ -162,6 +210,12 @@
   text-align: left;
 }
 
+.dark .card-flat {
+  background-color: #18181B;
+  border-color: #3F3F46;
+  color: #E4E4E7;
+}
+
 .card-flat-subtle {
   background-color: #F9F9F9;
   border: 2px solid #1A1A1A;
@@ -169,6 +223,12 @@
   padding: 24px;
   box-shadow: none !important;
   text-align: left;
+}
+
+.dark .card-flat-subtle {
+  background-color: #27272A;
+  border-color: #3F3F46;
+  color: #E4E4E7;
 }
 
 /* 64px Minimum Touch Target Class with 8px radius */

@@ -21,7 +21,7 @@ export const ProtectedRoute = ({ children }) => {
         <div className="w-20 h-20 bg-[#BA7517] rounded-full flex items-center justify-center text-5xl shadow-lg border-4 border-[#673D00] animate-pulse">
           🌺
         </div>
-        <p className="text-2xl font-bold text-[#855000]">Heritage Care</p>
+        <p className="text-2xl font-bold text-[#855000]">Qurevia</p>
         <p className="text-base font-medium text-[#524436] animate-pulse">Loading your session…</p>
       </div>
     );

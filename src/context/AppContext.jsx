@@ -27,6 +27,34 @@ export const AppProvider = ({ children }) => {
   const [caregiverPhone, setCaregiverPhone] = useState('');
   const [onboardingCompleted, setOnboardingCompleted] = useState(false);
 
+  // Dark / Light Theme Mode with local storage persistence
+  const [themeMode, setThemeMode] = useState(() => {
+    try {
+      const savedTheme = localStorage.getItem('hc_theme_mode');
+      if (savedTheme === 'dark' || savedTheme === 'light') return savedTheme;
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  });
+
+  useEffect(() => {
+    try {
+      if (themeMode === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      localStorage.setItem('hc_theme_mode', themeMode);
+    } catch (e) {
+      console.warn('Theme mode sync error:', e);
+    }
+  }, [themeMode]);
+
+  const toggleThemeMode = () => {
+    setThemeMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
   const [reminders, setReminders] = useState([
     { id: '1', title: 'Morning Heart Medicine', time: '08:00 AM', category: 'Medicine', taken: false, icon: 'Pill' },
     { id: '2', title: 'Drink Warm Water / Tea', time: '10:30 AM', category: 'Hydration', taken: true, icon: 'Droplets' },
@@ -246,7 +274,9 @@ export const AppProvider = ({ children }) => {
       familyContacts,
       addFamilyContact,
       updateFamilyContact,
-      deleteFamilyContact
+      deleteFamilyContact,
+      themeMode,
+      toggleThemeMode
     }}>
       {children}
     </AppContext.Provider>

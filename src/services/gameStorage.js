@@ -1,5 +1,5 @@
 /**
- * Heritage Care — Analytics, Progress & Voice Services
+ * Qurevia — Analytics, Progress & Voice Services
  */
 
 // ─── Local Storage / Analytics ───────────────────────────────────────────────

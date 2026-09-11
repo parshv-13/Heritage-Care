@@ -67,10 +67,6 @@ export function MorungStory() {
   const recognitionRef = useRef(null);
   const story = FOLK_TALES[currentStoryIdx];
 
-  useEffect(() => {
-    handlePlayFullStory();
-  }, [currentStoryIdx]);
-
   const handlePlayFullStory = () => {
     setGameState('narrating');
     setElderFeedback('');
@@ -81,6 +77,10 @@ export function MorungStory() {
       `Here is a traditional Naga folk tale: ${story.title}. ${story.fullStoryNarration}`
     );
   };
+
+  useEffect(() => {
+    handlePlayFullStory();
+  }, [currentStoryIdx]);
 
   const handleAskCompletionPrompt = () => {
     setGameState('question');

@@ -40,7 +40,7 @@ const registerSW = () => {
 
 /** Layout wrapper shown for authenticated pages */
 const AppLayout = ({ children }) => (
-  <div className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] flex flex-col font-sans">
+  <div className="min-h-screen bg-[#FFFFFF] dark:bg-[#121214] text-[#1A1A1A] dark:text-[#E4E4E7] flex flex-col font-sans transition-colors">
     <Navbar />
     <main className="flex-1 pb-32 overflow-y-auto">{children}</main>
     <PWAInstallPrompt />

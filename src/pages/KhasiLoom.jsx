@@ -22,7 +22,7 @@ export function KhasiLoom() {
   const [phase, setPhase] = useState('memorize'); // 'memorize' | 'weaving' | 'completed'
   const [timerLeft, setTimerLeft] = useState(8);
   const [attempts, setAttempts] = useState(0);
-  const [startTime, setStartTime] = useState(Date.now());
+  const [startTime, setStartTime] = useState(() => Date.now());
   const [accuracy, setAccuracy] = useState(100);
 
   const generatePattern = (size) => {
